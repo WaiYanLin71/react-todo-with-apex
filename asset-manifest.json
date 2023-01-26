@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-todo-with-apex/static/css/main.8a88ec92.css",
-    "main.js": "/react-todo-with-apex/static/js/main.827885bd.js",
+    "main.js": "/react-todo-with-apex/static/js/main.5d345cf2.js",
     "static/js/787.28cb0dcd.chunk.js": "/react-todo-with-apex/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/react-todo-with-apex/index.html",
     "main.8a88ec92.css.map": "/react-todo-with-apex/static/css/main.8a88ec92.css.map",
-    "main.827885bd.js.map": "/react-todo-with-apex/static/js/main.827885bd.js.map",
+    "main.5d345cf2.js.map": "/react-todo-with-apex/static/js/main.5d345cf2.js.map",
     "787.28cb0dcd.chunk.js.map": "/react-todo-with-apex/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a88ec92.css",
-    "static/js/main.827885bd.js"
+    "static/js/main.5d345cf2.js"
   ]
 }
