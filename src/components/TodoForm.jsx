@@ -1,4 +1,5 @@
-import { useApexStore } from "../store";
+import useApexStore, { create } from "../store";
+import { useEffect } from 'react'
 
 const TodoForm = () => {
 
@@ -9,9 +10,13 @@ const TodoForm = () => {
         const id = new Date().getTime();
         const formData = new FormData(e.target)
         const todo = formData.get('todo');
-        dispatch({ type: 'STORE', data: { id, name: todo, completed: false } })
+        dispatch(create({ id, name: todo, completed: false }))
         e.target.reset();
     }
+
+    useEffect(() => {
+        localStorage.setItem('todo', JSON.stringify(state.data))
+    }, [state.data])
 
     return (
         <form className='flex  items-end' onSubmit={handleSubmit}>

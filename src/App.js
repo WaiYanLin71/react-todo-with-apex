@@ -1,8 +1,8 @@
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useMemo, useState, useEffect } from 'react';
 import TodoForm from './components/TodoForm';
 import TodoItem from './components/TodoItem';
 import TodoType from './components/TodoType';
-import { useApexStore } from './store'
+import useApexStore, { checked, checkedAll, clearCompleted, remove, unCheckedAll } from './store'
 
 const App = () => {
 
@@ -10,29 +10,28 @@ const App = () => {
 
     const [condition, setCondition] = useState(null);
 
-    const handleDelete = (id) => dispatch({ type: 'DELETE', id })
+    const handleDelete = (id) => dispatch(remove({ id }))
 
-    const handleChecked = (e, id) => dispatch({ type: 'CHECK', id, checked: e.target.checked })
+    const handleChecked = (e, id) => dispatch(checked({ id, completed: e.target.checked }))
 
-    const handleClearCompleted = () => dispatch({ type: 'CLEAR_COMPLETED' })
+    const handleClearCompleted = () => dispatch(clearCompleted())
 
     const handleToggleChecked = () => {
 
-        if (state.find(todo => todo.completed === false)) {
-            dispatch({ type: 'CHECK_ALL' })
+        if (state.data.find(todo => todo.completed === false)) {
+            dispatch(checkedAll())
             return;
         }
 
-        dispatch({ type: 'UNCHECK_ALL' })
+        dispatch(unCheckedAll())
     }
 
-
     const todoMemo = useMemo(() => {
-        return state.filter((todo) => condition === null || todo.completed === condition)
+        return state.data.filter((todo) => condition === null || todo.completed === condition)
     }, [state, condition])
 
     const toggleMemo = useMemo(() => {
-        return !state.length || state.find(todo => todo.completed == false) ? 'Check All' : 'Unchecked All'
+        return !state.data.length || state.data.find(todo => todo.completed == false) ? 'Check All' : 'Unchecked All'
     }, [state])
 
 
@@ -48,7 +47,7 @@ const App = () => {
                         todo={todo} />
                 </Fragment>)}
                 <p>
-                    {state.filter(todo => !todo.completed).length} left
+                    {state.data.filter(todo => !todo.completed).length} left
                 </p>
                 <div className='-mx-1 flex mt-2'>
                     <button type="button" onClick={handleToggleChecked}
