@@ -1,23 +1,18 @@
-import { useApolloStore } from "../store";
-
-
-
+import { useApexStore } from "../store";
 
 const TodoForm = () => {
-    
-    const [state, setState] = useApolloStore();
-    
+
+    const [state, dispatch] = useApexStore();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const id = new Date().getTime();
         const formData = new FormData(e.target)
         const todo = formData.get('todo');
-        setState((prev) => {
-            return [...prev, { id, name: todo, completed: false }]
-        })
+        dispatch({ type: 'STORE', data: { id, name: todo, completed: false } })
         e.target.reset();
     }
-    
+
     return (
         <form className='flex  items-end' onSubmit={handleSubmit}>
             <div className='w-full'>

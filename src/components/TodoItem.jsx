@@ -1,4 +1,4 @@
-const TodoItem = ({ handleChecked, handleDelete, todo }) => {
+const TodoItem = ({ handleChecked, handleDelete, todo}) => {
     return (
         <div className='flex items-center justify-between mb-2 border px-2 py-4'>
             <div className='flex items-center'>
